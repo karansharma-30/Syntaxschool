@@ -1,0 +1,104 @@
+{% load static %}
+<!-- responsive nav  -->
+<div class="flex justify-between bg-Navcolor min-[767px]:hidden ">
+	<label for="logo"><img src="{% static 'images/logo.svg' %}" alt="" /></label>
+	<i class="open m-3"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="M119.97-235.53v-72.58h720.22v72.58H119.97Zm0-208.59v-72.42h720.22v72.42H119.97Zm0-208.44v-72.58h720.22v72.58H119.97Z"/></svg></i>
+	
+	<i class="close m-3 hidden"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m253.33-202.29-50.37-51.04 226-226.67-226-226.67 50.37-51.04L480-531.04l226.67-226.67 50.37 51.04-226 226.67 226 226.67-50.37 51.04L480-428.96 253.33-202.29Z"/></svg></i>
+</div>
+<div class="d-menu w-full h-screen bg-Navcolor flex justify-center items-center min-[767px]:hidden  ">
+	<div class="nav">
+		<li class="text-center p-4 text-3xl"><a href="#" >Lessons</a></li>
+		<li class="text-center p-4 text-3xl"><a href="#" >Quiz</a></li>
+		<li class="text-center p-4 text-3xl"><a href="#" >Roadmap</a></li>
+		<li class="text-center p-4 text-3xl"><a href="#" >Support</a></li>
+	</div>
+</div>
+<!-- main navbar  -->
+<div
+	class="w-[100vw] bg-Navcolor flex justify-between items-center px-9 max-md:hidden"
+>
+	<label for="logo"><img src="{% static 'images/logo.svg' %}" alt="" /></label>
+	<nav class="nav flex space-x-8">
+		<li><a href="{% url 'lesson' %}">Lessons</a></li>
+		<li><a href="#">Quiz</a></li>
+		<li><a href="#">Roadmap</a></li>
+		<li><a href="{% url 'support'  %}">Support</a></li>
+	</nav>
+	<div class="space-x-16 items-center">
+		<label class="swap swap-rotate absolute top-4">
+			<!-- This checkbox toggles the theme -->
+			<input type="checkbox" data-toggle-theme="dark,light" class="hidden" />
+
+			<!-- Sun Icon (for Light Mode) -->
+
+			<svg
+				class="swap-on"
+				title="light mode"
+				xmlns="http://www.w3.org/2000/svg"
+				height="24px"
+				viewBox="0 -960 960 960"
+				width="24px"
+				fill="#FFFFFF"
+			>
+				<path
+					d="M480-340q58 0 99-41t41-99q0-58-41-99t-99-41q-58 0-99 41t-41 99q0 58 41 99t99 41Zm0 60q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-450H40v-60h160v60Zm720 0H760v-60h160v60ZM450-760v-160h60v160h-60Zm0 720v-160h60v160h-60ZM262-658l-100-97 43-44 96 100-39 41Zm494 496-98-100 41-41 99 98-42 43Zm-99-537 98-99 44 42-99 98-43-41ZM162-205l99-98 42 42-98 99-43-43Zm318-275Z"
+				/>
+				<title>Dark mode</title>
+			</svg>
+
+			<!-- Moon Icon (for Dark Mode) -->
+			<svg
+				class="swap-off"
+				xmlns="http://www.w3.org/2000/svg"
+				height="24px"
+				viewBox="0 -960 960 960"
+				width="24px"
+				fill="#000000"
+			>
+				<path
+					d="M479.79-107.5q-155.14 0-263.72-108.6Q107.5-324.71 107.5-479.85q0-155.15 108.65-264.4Q324.79-853.5 480-853.5q9 0 19 .25t19.5 2.25q-27.5 33.5-44.25 73.5T457.5-692q0 98.12 69.27 166.81T695-456.5q44.06 0 84.28-16.25T852-516.5q1 9.5 1.25 18.21.25 8.7.25 17.29 0 154.96-109.28 264.23Q634.94-107.5 479.79-107.5Z"
+				/>
+				<title>Light mode</title>
+			</svg>
+		</label>
+
+		<button><img src="{% static 'images/profile.svg' %}" /></button>
+	</div>
+</div>
+
+<script>
+	// This will save the theme preference in localStorage and apply the correct theme on page load
+	(function () {
+		const themeToggle = document.querySelector("[data-toggle-theme]");
+		const storedTheme = localStorage.getItem("theme");
+
+		if (storedTheme) {
+			document.documentElement.setAttribute("data-theme", storedTheme);
+			themeToggle.checked = storedTheme === "dark";
+		}
+
+		themeToggle.addEventListener("change", function () {
+			const theme = themeToggle.checked ? "dark" : "light";
+			document.documentElement.setAttribute("data-theme", theme);
+			localStorage.setItem("theme", theme);
+		});
+	})();
+
+ let open = document.querySelector(".open");
+ let close = document.querySelector(".close");
+ let d_menu = document.querySelector(".d-menu");
+
+ open.addEventListener("click",()=>{
+		close.style.display="block";
+		d_menu.style.display="block";
+		open.style.display="none";
+ })
+ close.addEventListener("click",()=>{
+	d_menu.style.display="none";
+	close.style.display="none";
+	open.style.display="block";
+
+})
+
+</script>
