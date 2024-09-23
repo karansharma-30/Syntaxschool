@@ -5,11 +5,18 @@
 /* DaisyUI styles */
 @import "daisyui";
 
+body.menu-open {
+    overflow: hidden;
+}
 
+/* Animation for sliding the mobile menu */
+.menu {
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in-out;
+}
 
-.nav li{
-    list-style: none;
-    color: white;
+.menu-opened {
+    transform: translateX(0%);
 }
 
 
