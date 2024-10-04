@@ -24,6 +24,8 @@ urlpatterns = [
     path("", home,name='home'),
     path("contact/", contact, name="contact"),
     path("lesson/", lesson, name="lesson"),
+    path('quiz/', include('quiz.urls')),
+    path('profile/', include('Profile.urls')),
 
 
 

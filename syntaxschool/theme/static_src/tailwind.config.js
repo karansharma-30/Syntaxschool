@@ -45,7 +45,7 @@ module.exports = {
         extend: {
 
             colors: {
-                Navcolor: 'rgb(59, 168, 107)', // Replace with your RGB values
+                Navcolor: 'rgb(41, 75, 113)', // Replace with your RGB values
             },
 
         },

@@ -1,0 +1,20 @@
+<h1>Take the Quiz</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Quiz</button>
+</form>
+
+<p id="timer"></p>
+<script>
+    let timeLeft = 300;
+    let timer = setInterval(function(){
+        if (timeLeft <= 0){
+            clearInterval(timer);
+            alert('Time is up!');
+            window.location.href = "#";
+        }
+        document.getElementById("timer").innerHTML = timeLeft + " seconds remaining";
+        timeLeft -= 1;
+    }, 1000);
+</script>

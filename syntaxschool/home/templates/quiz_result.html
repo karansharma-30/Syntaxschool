@@ -1,0 +1,8 @@
+<h1>Quiz Result</h1>
+<p>Your score: {{ score }}/10</p>
+{% if passed %}
+    <p>Congratulations, you passed!</p>
+{% else %}
+    <p>Sorry, you failed. Try again!</p>
+{% endif %}
+<a href="{% url 'quiz' %}">Take Quiz Again</a>
