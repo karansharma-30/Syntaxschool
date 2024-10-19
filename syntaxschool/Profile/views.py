@@ -21,7 +21,7 @@ def profile_view(request):
         if 'profile_picture' in request.FILES:
             user_profile.profile_picture = request.FILES['profile_picture']
             user_profile.save()
-        # Additional logic for updating bio and other info
+        
         return redirect('profile_view')
     
     return render(request, 'profile/profile.html', {'user_profile': user_profile})
@@ -55,13 +55,15 @@ def login_view(request):
                   return redirect('profile')  # Redirect to profile if already logged in
     # rest of the code...
         
-        elif form.is_valid():
+        if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 auth_login(request, user)
                 return redirect('profile')  # Redirect to profile page
+            else:
+                messages.error(request, 'Invalid username or password.')
     else:
         form = UserLoginForm()
     return render(request, 'profile/login.html', {'form': form})
