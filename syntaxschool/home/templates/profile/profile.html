@@ -1,0 +1,70 @@
+<!-- Profile Page (profile.html) -->
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<div class="min-h-screen bg-gray-100 flex items-center justify-center py-10">
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-md">
+        <!-- Profile header with rounded profile picture -->
+        <div class="bg-gradient-to-r from-purple-400 via-blue-500 to-purple-600 h-48 flex items-center justify-center">
+            {% if user.userprofile.profile_picture %}
+            <img src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture" class="w-32 h-32 rounded-full border-4 border-white -mt-16 shadow-lg">
+            {% else %}
+            <img src="{% static 'default-avatar.png' %}" alt="Default Avatar" class="w-32 h-32 rounded-full border-4 border-white -mt-16 shadow-lg">
+            {% endif %}
+        </div>
+
+        <!-- Profile content -->
+        <div class="p-6">
+            <div class="text-center">
+                <h2 class="text-2xl font-semibold text-gray-800">{{ user.username }}</h2>
+                <p class="text-gray-500 mt-2">Software Developer | Learner</p>
+            </div>
+
+            <!-- Bio Section -->
+            <div class="mt-4">
+                <h3 class="text-lg font-medium text-gray-800">Bio</h3>
+                <textarea name="bio" class="w-full h-24 bg-gray-100 p-2 rounded-md mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500">{{ user.userprofile.bio }}</textarea>
+            </div>
+
+            <!-- Profile Picture Update Options -->
+            <div class="mt-6">
+                <h3 class="text-lg font-medium text-gray-800">Profile Picture</h3>
+
+                <!-- Add/Update Profile Picture -->
+                <form method="post" enctype="multipart/form-data" class="mt-4">
+                    {% csrf_token %}
+                    <label for="profile_picture" class="block text-gray-600">Upload new picture</label>
+                    <input type="file" name="profile_picture" id="profile_picture" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:bg-blue-50 file:text-blue-600 hover:file:bg-blue-100">
+                    <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded-md mt-3 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        Update Profile Picture
+                    </button>
+                </form>
+
+                <!-- Remove Profile Picture -->
+                {% if user.userprofile.profile_picture %}
+                <form method="post" action="{% url 'remove_profile_picture' %}" class="mt-4">
+                    {% csrf_token %}
+                    <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-md mt-2 focus:outline-none focus:ring-2 focus:ring-red-500">
+                        Remove Profile Picture
+                    </button>
+                </form>
+                {% endif %}
+            </div>
+
+            <!-- Update Profile Button -->
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+                <button class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mt-4">
+                    Update Profile
+                </button>
+            </form>
+
+            <!-- Links -->
+            <div class="flex justify-between mt-4">
+                <a href="{% url 'home' %}" class="text-blue-500 hover:underline">Home</a>
+                <a href="{% url 'logout' %}" class="text-red-500 hover:underline">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

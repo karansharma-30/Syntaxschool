@@ -28,7 +28,7 @@ def quiz_view(request):
             username = request.user.username if request.user.is_authenticated else "Anonymous"
             result = QuizResult(user=username, score=score, passed=passed)
             result.save()
-            return render(request, 'quiz_result.html', {'score': score, 'passed': passed})
+            return render(request, 'certificate/quiz_result.html', {'score': score, 'passed': passed})
 
     else:
         # Select random questions
@@ -39,4 +39,4 @@ def quiz_view(request):
 
         form = QuizForm(questions=questions)  # Pass Question objects to the form
 
-    return render(request, 'quiz.html', {'form': form})
+    return render(request, 'certificate/quiz.html', {'form': form})

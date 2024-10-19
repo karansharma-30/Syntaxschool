@@ -7,8 +7,6 @@ from django.conf import settings
 def home(request):
     return render(request,'index.html')
 
-def support(request):
-    return render(request,'contact.html')
 
 
 def lesson(request):
@@ -104,4 +102,4 @@ def contact(request):
 
     # Render the contact form template with the form context
     context = {'form': form}
-    return render(request, 'contact.html', context)
+    return render(request, 'contact/contact.html', context)

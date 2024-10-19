@@ -1,0 +1,67 @@
+<!-- /templates/profile/login.html -->
+{% load tailwind_tags %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% tailwind_css %}
+
+</head>
+
+<body>
+<div class="h-screen flex justify-center items-center">
+  <div class="quiz-content bg-white rounded-lg shadow-lg p-2 max-w-xl w-full">
+    <div class="text-center">
+      <h1 class="text-2xl text-center py-2 text-teal-500 underline">Login</h1>
+
+      {% if messages %}
+      {% for message in messages %}
+      {% if message.tags == 'error' %}
+      <center>
+        <h4 style="color: firebrick;">{{message}}</h4>
+      </center>
+      {% else %}
+      <center>
+        <h4 style="color: dodgerblue;">{{message}}</h4>
+      </center>
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+
+      <form method="POST" class="p-4">
+
+        {% csrf_token %}
+
+        {% if messages %}
+           <div class="messages">
+           {% for message in messages %}
+             <div class="{% if message.tags %}{{ message.tags }}{% endif %}">
+               {{ message }}
+              </div>
+              {% endfor %}
+            </div>
+       {% endif %}
+
+        <div class="txt_field">
+          <label class="block text-black text-sm text-center">Username</label>
+          <input type="text" class="w-10/12 mb-2 border-gray-300 rounded" required name="username">
+        </div>
+
+        <div class="txt_field">
+          <label class="block text-black text-sm text-center">Password</label>
+          <input type="password" class="w-10/12 mb-2 border-gray-300 rounded" required name="password">
+
+        </div>
+
+        <input type="submit" value="Login" class="p-2 bg-Navcolor hover:bg-teal-500 text-white w-10/12 rounded cursor-pointer">
+        <div class="signup_link p-2">
+          Not a member? <a href="{% url 'signup' %} " class="text-blue-600 underline">Signup</a>
+          <p class="p-3">Forgot your Password? <a href="{% url 'forgot-password' %}" class="text-blue-600 underline">Reset Password</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

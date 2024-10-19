@@ -1,6 +1,6 @@
 {% load static %}
 <!-- responsive nav  -->
-<nav class="bg-Navcolor fixed w-full shadow-md z-20">
+<nav class="bg-Navcolor fixed w-full shadow-md z-50">
 	<div class="flex justify-between items-center h-16 px-6">
 
 		<!-- Left Section (Logo) -->
@@ -32,9 +32,6 @@
 			<a href="{% url 'quiz' %}" class="text-white">Certificate</a>
 			<a href="#" class="text-white">Roadmap</a>
 			<a href="{% url 'contact' %}" class="text-white">Contact</a>
-			<a href="{% url 'signup' %}">Sign Up</a>
-			<a href="{% url 'login' %}">Login</a>
-			<a href="{% url 'logout' %}">Logout</a>
 		</div>
 
 		<!-- Right Section (Mobile Menu Button) -->
@@ -62,7 +59,7 @@
 			</label>
 
 			<!-- profile icon  -->
-			<a href="{% url 'profile' %}">
+			<a href="{% url 'profile_redirect' %}">
 				<svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px"
 					fill="#e8eaed">
 					<path
@@ -99,6 +96,7 @@
 		<li><a href="#" class="block">Supports</a></li>
 		<li><a href="#" class="block">Certificate</a></li>
 		<li><a href="#" class="block">Compilers</a></li>
+		
 	</ul>
 </div>
 
