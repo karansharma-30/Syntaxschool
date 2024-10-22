@@ -1,26 +1,22 @@
+# models.py
 from django.db import models
-from django.utils import timezone
-
-# Create your models here.
-
 
 class Question(models.Model):
-    question_text = models.CharField(max_length=255)  # Make sure this field exists
-    option_1 = models.CharField(max_length=255)
-    option_2 = models.CharField(max_length=255)
-    option_3 = models.CharField(max_length=255)
-    option_4 = models.CharField(max_length=255)
-    correct_option = models.IntegerField()  # store 1, 2, 3, or 4 to indicate the correct option
+    SECTION_CHOICES = [
+        ('python', 'Python'),
+        ('html', 'HTML'),
+        ('css', 'CSS'),
+        ('javascript', 'JavaScript'),
+    ]
+    
+    section = models.CharField(max_length=20, choices=SECTION_CHOICES)
+    question_text = models.TextField()
+    option_a = models.CharField(max_length=200)
+    option_b = models.CharField(max_length=200)
+    option_c = models.CharField(max_length=200)
+    option_d = models.CharField(max_length=200)
+    correct_answer = models.CharField(max_length=1)  # Assuming A, B, C, or D
 
     def __str__(self):
-        return self.question_text
+        return f"{self.section} - {self.question_text[:50]}..."
 
-
-class QuizResult(models.Model):
-    user = models.CharField(max_length=100)
-    score = models.IntegerField()
-    passed = models.BooleanField()
-    date = models.DateTimeField(default=timezone.now)  # Ensure this field is correct
-
-    def __str__(self):
-        return f'{self.user} - {self.score}'

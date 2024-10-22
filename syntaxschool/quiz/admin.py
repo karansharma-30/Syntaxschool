@@ -1,18 +1,18 @@
+# admin.py
 from django.contrib import admin
-from .models import Question, QuizResult
+from .models import Question
 
-# Customize how Question is displayed in the admin panel
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('question_text', 'option_1', 'option_2', 'option_3', 'option_4', 'correct_option')
-    search_fields = ['question_text']
-    list_filter = ['correct_option']
+    list_display = ('section', 'question_text', 'correct_answer')  # Columns to display
+    list_filter = ('section',)  # Filter by section
+    search_fields = ('question_text',)  # Searchable fields
+    ordering = ('section',)  # Default ordering
 
-# Customize how QuizResult is displayed in the admin panel
-class QuizResultAdmin(admin.ModelAdmin):
-    list_display = ('user', 'score', 'passed', 'date')
-    search_fields = ['user']
-    list_filter = ['passed', 'date']
+    # Optional: Customize form layout
+    fieldsets = (
+        (None, {
+            'fields': ('section', 'question_text', 'option_a', 'option_b', 'option_c', 'option_d', 'correct_answer')
+        }),
+    )
 
-# Register models
 admin.site.register(Question, QuestionAdmin)
-admin.site.register(QuizResult, QuizResultAdmin)

@@ -1,0 +1,13 @@
+<h2>Select a Language</h2>
+<form method="get" action="{% url 'start_quiz' language='python' %}">
+    <button type="submit">Python</button>
+</form>
+<form method="get" action="{% url 'start_quiz' language='html' %}">
+    <button type="submit">HTML</button>
+</form>
+<form method="get" action="{% url 'start_quiz' language='css' %}">
+    <button type="submit">CSS</button>
+</form>
+<form method="get" action="{% url 'start_quiz' language='javascript' %}">
+    <button type="submit">JavaScript</button>
+</form>

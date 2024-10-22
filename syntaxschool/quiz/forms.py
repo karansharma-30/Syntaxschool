@@ -1,5 +1,5 @@
 from django import forms
-from .models import Question
+from .models import *
 
 class QuizForm(forms.Form):
     def __init__(self, *args, **kwargs):
@@ -9,10 +9,10 @@ class QuizForm(forms.Form):
             self.fields[f'question_{idx}'] = forms.ChoiceField(
                 label=question.question_text,
                 choices=[
-                    (1, question.option_1),
-                    (2, question.option_2),
-                    (3, question.option_3),
-                    (4, question.option_4)
+                    (1, question.option_a),
+                    (2, question.option_b),
+                    (3, question.option_c),
+                    (4, question.option_d),
                 ],
                 widget=forms.RadioSelect
             )

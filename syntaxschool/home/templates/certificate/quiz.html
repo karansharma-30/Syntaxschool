@@ -1,20 +1,12 @@
-<h1>Take the Quiz</h1>
+<h2>Quiz - {{ questions.first.language }}</h2>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit Quiz</button>
+    {% for question in questions %}
+        <h3>{{ question.question_text }}</h3>
+        <input type="radio" name="answers" value="{{ question.correct_answer }}">{{ question.option_1 }}<br>
+        <input type="radio" name="answers" value="{{ question.correct_answer }}">{{ question.option_2 }}<br>
+        <input type="radio" name="answers" value="{{ question.correct_answer }}">{{ question.option_3 }}<br>
+        <input type="radio" name="answers" value="{{ question.correct_answer }}">{{ question.option_4 }}<br>
+    {% endfor %}
+    <button type="submit">Submit</button>
 </form>
-
-<p id="timer"></p>
-<script>
-    let timeLeft = 300;
-    let timer = setInterval(function(){
-        if (timeLeft <= 0){
-            clearInterval(timer);
-            alert('Time is up!');
-            window.location.href = "#";
-        }
-        document.getElementById("timer").innerHTML = timeLeft + " seconds remaining";
-        timeLeft -= 1;
-    }, 1000);
-</script>
